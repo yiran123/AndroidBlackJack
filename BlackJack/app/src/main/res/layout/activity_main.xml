@@ -15,7 +15,6 @@
         android:layout_width="100dp"
         android:layout_height="180dp"
         android:background="@drawable/border"
-
         android:padding="10dp"
         android:text="card1"
         android:textSize="25sp"

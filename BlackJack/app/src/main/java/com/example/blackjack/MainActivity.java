@@ -70,14 +70,16 @@ public class MainActivity extends AppCompatActivity {
 //            Toast.makeText(MainActivity.this,"22",Toast.LENGTH_SHORT).show();
             //execute when the card < 2
             if(model.getShowCardNum()<2){
-                String card = model.createCard();
-                if(model.getShowCardNum()==1){
-                    card1.setText(card);
-                    card1.setVisibility(View.VISIBLE);
-                }else{
-                    card2.setText(card);
-                    card2.setVisibility(View.VISIBLE);
-                }
+                String card11 = model.createCard();
+
+                card1.setText(card11);
+                card1.setVisibility(View.VISIBLE);
+                String card22 = model.createCard();
+
+                card2.setText(card22);
+                card2.setVisibility(View.VISIBLE);
+
+
                 calcResult();
             }
             return false;
