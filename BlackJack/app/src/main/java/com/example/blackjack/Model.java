@@ -12,6 +12,7 @@ public class Model {
     private List<Integer> showCard = new ArrayList<>();
     private int score;
     private boolean isPlaying;
+    private boolean hasAce;
     public String createCard(){
         Random random = new Random();
         int pos = random.nextInt(cards.length);
@@ -19,6 +20,10 @@ public class Model {
             pos = random.nextInt(cards.length);
         }
         showCard.add(pos);
+        int currentCardScore = getCardScore(pos);
+        if(currentCardScore == 1) {
+            hasAce = true;
+        }
         score+=getCardScore(pos);
         return cards[pos];
     }
@@ -38,6 +43,7 @@ public class Model {
        return showCard.size();
     }
     public int getScore(){
+        if(hasAce == true && isWinning(score+10)) {return score+10;}
         return score;
     }
     /**
@@ -47,11 +53,13 @@ public class Model {
      * @return
      */
     public int calcResult(){
-        if(score<17){
-            return 0;
-        }else if(score<=21){
+        if(hasAce==true && isWinning(score+10) || isWinning(score)){
             isPlaying = false;
             return 1;
+
+        }else if(score<=17){
+
+            return 0;
         }else{
             isPlaying = false;
             return -1;
@@ -65,5 +73,11 @@ public class Model {
     public boolean isPlaying(){
         return isPlaying;
     }
+
+    private boolean isWinning(int score) {
+        return score>17 && score<=21;
+    }
+
+    public boolean hasAce() {return hasAce;}
 }
 
